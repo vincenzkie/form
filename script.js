@@ -1,12 +1,10 @@
 document.getElementById('bookingForm').addEventListener('submit', function(event) {
     event.preventDefault();
-
+    
     const submitBtn = document.getElementById('submitBtn');
     const statusMessage = document.getElementById('statusMessage');
-    
     submitBtn.disabled = true;
     submitBtn.innerText = 'Sending...';
-    statusMessage.innerText = '';
 
     const payload = {
         instructorName: document.getElementById('instructorName').value,
@@ -16,8 +14,8 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
         endTime: document.getElementById('endTime').value
     };
 
-    // Ensure this URL is your correct Production Webhook URL
-    const n8nWebhookUrl = 'https://parasatropa.app.n8n.cloud/webhook/classroom-scheduler-trigger/webhook/classroom-scheduler-trigger';
+    // FIXED: Correct single URL path
+    const n8nWebhookUrl = 'https://parasatropa.app.n8n.cloud/webhook/classroom-scheduler-trigger';
 
     fetch(n8nWebhookUrl, {
         method: 'POST',
@@ -30,13 +28,12 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
             statusMessage.innerText = 'Request submitted successfully!';
             document.getElementById('bookingForm').reset();
         } else {
-            throw new Error('Network response was not ok');
+            throw new Error('Server error');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
         statusMessage.style.color = 'red';
-        statusMessage.innerText = 'Failed to submit. Check the console.';
+        statusMessage.innerText = 'Failed to submit.';
     })
     .finally(() => {
         submitBtn.disabled = false;
