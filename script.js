@@ -1,4 +1,4 @@
-document.getElementById('bookingForm').addEventListener('submit', function(event) {
+document.getElementById('feedbackForm').addEventListener('submit', function(event) {
     event.preventDefault();
     
     const submitBtn = document.getElementById('submitBtn');
@@ -7,15 +7,15 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
     submitBtn.innerText = 'Sending...';
 
     const payload = {
-        instructorName: document.getElementById('instructorName').value,
+        name: document.getElementById('name').value,
         email: document.getElementById('email').value,
-        room: document.getElementById('room').value,
-        startTime: document.getElementById('startTime').value,
-        endTime: document.getElementById('endTime').value
+        plateNumber: document.getElementById('plateNumber').value,
+        category: document.getElementById('category').value,
+        location: document.getElementById('location').value,
+        description: document.getElementById('description').value
     };
 
-    // FIXED: Correct single URL path
-    const n8nWebhookUrl = 'https://parasatropa.app.n8n.cloud/webhook/classroom-scheduler-trigger';
+    const n8nWebhookUrl = 'https://parasatropa.app.n8n.cloud/webhook/biyahe-feedback-report';
 
     fetch(n8nWebhookUrl, {
         method: 'POST',
@@ -25,8 +25,8 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
     .then(response => {
         if (response.ok) {
             statusMessage.style.color = 'green';
-            statusMessage.innerText = 'Request submitted successfully!';
-            document.getElementById('bookingForm').reset();
+            statusMessage.innerText = 'Report submitted successfully!';
+            document.getElementById('feedbackForm').reset();
         } else {
             throw new Error('Server error');
         }
@@ -37,6 +37,6 @@ document.getElementById('bookingForm').addEventListener('submit', function(event
     })
     .finally(() => {
         submitBtn.disabled = false;
-        submitBtn.innerText = 'Submit Request';
+        submitBtn.innerText = 'Submit Report';
     });
 });

@@ -3,42 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom Scheduler</title>
+    <title>BiyaheFeedback: Public Transport Grievance</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="form-container">
-    <h2>Book a Room</h2>
-    <form id="bookingForm">
+    <h2>BiyaheFeedback Report</h2>
+    <form id="feedbackForm">
         <div class="form-group">
-            <label for="instructorName">Instructor Name</label>
-            <input type="text" id="instructorName" required>
+            <label for="name">Commuter Name</label>
+            <input type="text" id="name" required>
         </div>
         <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" required>
         </div>
         <div class="form-group">
-            <label for="room">Room</label>
-            <select id="room" required>
-                <option value="">Select a room...</option>
-                <option value="Computer Laboratory">Lab 1</option>
-                <option value="IT Lecture Room">IT Lecture Room</option>
-                <option value="Building B201">Building B201</option>
-                <option value="Building B102">Building B102</option>
-                <option value="Building B101">Building B101</option>
+            <label for="plateNumber">Plate/Body Number</label>
+            <input type="text" id="plateNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Issue Category</label>
+            <select id="category" required>
+                <option value="">Select an issue...</option>
+                <option value="Overcharging">Overcharging</option>
+                <option value="Reckless Driving">Reckless Driving</option>
+                <option value="Discourtesy/Refusal to Convey">Discourtesy/Refusal to Convey</option>
+                <option value="Others">Others</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="startTime">Start Time</label>
-            <input type="datetime-local" id="startTime" required> 
+            <label for="location">Location</label>
+            <input type="text" id="location" required>
         </div>
         <div class="form-group">
-            <label for="endTime">End Time</label>
-            <input type="datetime-local" id="endTime" required>
+            <label for="description">Description</label>
+            <textarea id="description" rows="4" required></textarea>
         </div>
-        <button type="submit" id="submitBtn">Submit Request</button>
+        <button type="submit" id="submitBtn">Submit Report</button>
         <div id="statusMessage"></div>
     </form>
 </div>
